@@ -10,7 +10,7 @@
             2. If array is sorted, so in that case O(n) is time complexity.
 
         - Space complexity: 
-            1. O(1) since no extra data structure is used.
+            1. O(1) since no extra data structure is used
 */
 // const arr = [52, 24, 20, 9, 46, 13, -1]
 let arr = [10, -9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 1, 9]
