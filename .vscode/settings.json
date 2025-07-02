@@ -1,0 +1,7 @@
+{
+    "java.project.sourcePaths": [
+        "Java/Binary Tree",
+        "Java/Misc"
+    ],
+    "java.debug.settings.onBuildFailureProceed": true
+}
