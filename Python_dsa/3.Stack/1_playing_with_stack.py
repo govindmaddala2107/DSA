@@ -1,0 +1,16 @@
+from Stack import Stack
+
+stack = Stack()
+stack.length_of_stack()
+stack.push(10)
+stack.push(20)
+stack.push(30)
+stack.push(40)
+stack.push(50)
+stack.push(60)
+stack.length_of_stack()
+stack.displayStack()
+stack.peek()
+stack.pop()
+stack.displayStack()
+stack.peek()
