@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSA Roadmap Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            padding: 20px;
+            max-width: 1100px;
+            margin: auto
+        }
+
+        h1 {
+            text-align: center;
+            color: #1e3a8a
+        }
+
+        .section {
+            background: #fff;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .1)
+        }
+
+        label {
+            display: block;
+            padding: 4px 0
+        }
+
+        .progress {
+            font-size: 18px;
+            font-weight: bold;
+            color: #16a34a
+        }
+
+        button {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            background: #dc2626;
+            color: white;
+            cursor: pointer
+        }
+    </style>
+</head>
+
+<body>
+    <h1>DSA Beginner → Advanced Roadmap Tracker</h1>
+    <p class="progress">Progress: <span id="progress">0</span>%</p>
+    <div id="roadmap"></div>
+    <button onclick="resetProgress()">Reset Progress</button>
+    <script>
+        const roadmap = {
+            'Phase 1: Programming Foundations': ['Time & Space Complexity', 'Arrays', 'Strings', 'Recursion', 'Basic Math', 'Bit Manipulation'],
+            'Phase 2: Core Data Structures': ['Linked List', 'Stack', 'Queue', 'Hashing', 'Trees Basics', 'Binary Search Tree', 'Heap/Priority Queue'],
+            'Phase 3: Searching & Sorting': ['Binary Search', 'Merge Sort', 'Quick Sort', 'Heap Sort', 'Counting Sort'],
+            'Phase 4: Intermediate DSA': ['Sliding Window', 'Two Pointers', 'Prefix Sum', 'Greedy Algorithms', 'Backtracking'],
+            'Phase 5: Advanced Trees': ['Binary Tree Traversals', 'LCA', 'Trie', 'Segment Tree', 'Fenwick Tree'],
+            'Phase 6: Graphs': ['BFS', 'DFS', 'Topological Sort', 'Union Find', 'Dijkstra', 'Bellman Ford', 'Floyd Warshall', 'MST'],
+            'Phase 7: Dynamic Programming': ['1D DP', '2D DP', 'Knapsack', 'LIS', 'LCS', 'DP on Trees', 'Bitmask DP'],
+            'Phase 8: Advanced Topics': ['Monotonic Stack', 'Deque', 'String Algorithms (KMP, Z)', 'Rolling Hash', 'Advanced Graphs', 'Network Flow'],
+            'Phase 9: Competitive Coding & Interviews': ['LeetCode 150', 'Blind 75', 'NeetCode 150', 'Systematic Revision', 'Mock Interviews']
+        };
+        const container = document.getElementById('roadmap');
+        let total = 0;
+        for (const phase in roadmap) {
+            const div = document.createElement('div');
+            div.className = 'section';
+            div.innerHTML = `<h2>${phase}</h2>`;
+            roadmap[phase].forEach(topic => {
+                total++;
+                const id = phase + '-' + topic;
+                const checked = localStorage.getItem(id) === 'true';
+                div.innerHTML += `<label><input type="checkbox" id="${id}" ${checked ? 'checked' : ''}> ${topic}</label>`;
+            });
+            container.appendChild(div);
+        }
+        function update() {
+            let done = 0;
+            document.querySelectorAll('input[type=checkbox]').forEach(cb => {
+                if (cb.checked) done++;
+                cb.onchange = () => { localStorage.setItem(cb.id, cb.checked); update(); };
+            });
+            document.getElementById('progress').innerText = ((done / total) * 100).toFixed(1);
+        }
+        function resetProgress() {
+            localStorage.clear();
+            location.reload();
+        }
+        update();
+    </script>
+</body>
+
+</html>
